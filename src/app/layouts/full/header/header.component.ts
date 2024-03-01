@@ -14,7 +14,7 @@ export class AppHeaderComponent {
   role:any;
 
   constructor(private router:Router,
-    private dialog:MatDialog) {
+    private dialog:MatDialog,) {
   }
 
   logout(){
