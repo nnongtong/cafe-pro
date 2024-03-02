@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/service/product.service';
 import { SnackbarService } from 'src/app/service/snackbar.service';
 import { GlobalConstants } from 'src/app/shared/global-constants';
 import { saveAs } from 'file-saver';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-manage-order',
@@ -23,13 +24,20 @@ export class ManageOrderComponent implements OnInit {
   price:any;
   totalAmount:number = 0;
   responseMessage:any;
+  userRole:any;
+  token:any = localStorage.getItem('token');
+  tokenPayload:any;
 
   constructor(private formBuilder:FormBuilder,
     private categoryService:CategoryService,
     private productService:ProductService,
     private snackbarService:SnackbarService,
     private billService:BillService,
-    private ngxService:NgxUiLoaderService) { }
+    private ngxService:NgxUiLoaderService) 
+    { 
+      this.tokenPayload = jwtDecode(this.token);
+      this.userRole = this.tokenPayload?.role;
+    }
 
   ngOnInit(): void {
     this.ngxService.start();

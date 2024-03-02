@@ -1,5 +1,7 @@
 <mat-card>
     <b><span>Manage Order</span></b>
+    {{ dataSource | json}}
+    {{ userRole | json}}
     <button mat-flat-button color="primary" class="float-right" [disabled]="validateSubmit()" (click)="submitAction()">
         <mat-icon>print</mat-icon> Submit & Get Bill
     </button>
