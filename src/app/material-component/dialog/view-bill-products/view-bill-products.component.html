@@ -11,12 +11,9 @@
 <mat-dialog-content class="mat-typography">
     <table id="customers">
         <tr>
-            <td><b>Name:</b> {{data?.name}}</td>
-            <td><b>Email:</b> {{data?.email}}</td>
-        </tr>
-        <tr>
-            <td><b>Contact Number:</b> {{data?.contactNumber}}</td>
+            <td><b>createdBy</b> {{data?.createdBy}}</td>
             <td><b>Payment Method:</b> {{data?.paymentMethod}}</td>
+            <td><b>Date:</b> {{data?.date | date: 'fullDate'}}</td>
         </tr>
     </table>
 
