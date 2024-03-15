@@ -16,7 +16,7 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class ManageOrderComponent implements OnInit {
 
-  displayedColumns: string[] = ['name','category','price','quantity','total','edit'];
+  displayedColumns: string[] = ['name','category','price','quantity','total','edit','date'];
   dataSource:any = [];
   manageOrderForm:any = FormGroup;
   categorys:any = [];
@@ -43,10 +43,8 @@ export class ManageOrderComponent implements OnInit {
     this.ngxService.start();
     this.getCategorys();
     this.manageOrderForm = this.formBuilder.group({
-      name:[null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex)]],
-      email:[null,[Validators.required,Validators.pattern(GlobalConstants.emailRegex)]],
-      contactNumber:[null,[Validators.required,Validators.pattern(GlobalConstants.contactNumberRegex)]],
       paymentMethod:[null,[Validators.required]],
+      date:[null,[Validators.required]],
       product:[null,[Validators.required]],
       category:[null,[Validators.required]],
       quantity:[null,[Validators.required]],
@@ -129,10 +127,8 @@ export class ManageOrderComponent implements OnInit {
 
   validateSubmit(){
     if(this.totalAmount === 0 || 
-      this.manageOrderForm.controls['name'].value === null ||
-      this.manageOrderForm.controls['email'].value === null ||
-      this.manageOrderForm.controls['contactNumber'].value === null ||
-      this.manageOrderForm.controls['paymentMethod'].value === null){
+      this.manageOrderForm.controls['paymentMethod'].value === null ||
+      this.manageOrderForm.controls['date'].value === null){
         return true;
       }else{
         return false;
@@ -166,10 +162,8 @@ export class ManageOrderComponent implements OnInit {
   submitAction(){
     var fromData = this.manageOrderForm.value;
     var data = {
-      name: fromData.name,
-      email: fromData.email,
-      contactNumber: fromData.contactNumber,
       paymentMethod: fromData.paymentMethod,
+      date: fromData.date,
       totalAmount: this.totalAmount.toString(),
       productDetails: JSON.stringify(this.dataSource)
     }

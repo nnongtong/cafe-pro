@@ -17,7 +17,7 @@ import { saveAs } from 'file-saver';
 })
 export class ViewBillComponent implements OnInit {
 
-  displayedColumns: string[] = ['name','email','contactNumber','paymentMethod','total','view'];
+  displayedColumns: string[] = ['createdBy','paymentMethod','total','date','view'];
   dataSource:any;
   responseMessage:any;
 
@@ -100,11 +100,10 @@ export class ViewBillComponent implements OnInit {
   downloadReportAction(values:any){
     this.ngxService.start();
     var data = {
-      name: values.name,
-      email: values.email,
       uuid: values.uuid,
-      contactNumber: values.contactNumber,
+      createdBy: values.createdBy,
       paymentMethod: values.paymentMethod,
+      date: values.date,
       totalAmount: values.total.toString(),
       productDetails: values.productDetails
     }
